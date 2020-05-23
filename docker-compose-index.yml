@@ -1,0 +1,10 @@
+version: '3.3'
+
+services:
+  promnesia-index:
+    build:
+      context: ./promnesia/
+      dockerfile: Dockerfile
+    volumes:
+      - ./data:/data
+    entrypoint: ["promnesia", "index", "--config", "/config.py" ]
