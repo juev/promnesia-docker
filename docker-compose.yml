@@ -1,0 +1,26 @@
+version: '3.3'
+
+services:
+  promnesia:
+    container_name: promnesia
+    build:
+      context: ./promnesia/
+      dockerfile: Dockerfile
+    volumes:
+      - ./data:/data
+    ports:
+      - "13131:13131"
+    networks:
+      - web
+    labels:
+      - "traefik.http.routers.fireflyiii.rule=Host(`promnesia.juev.org`)"
+      - "traefik.enable=true"
+      - "traefik.backend=promnesia"
+      - "traefik.docker.network=web"
+      - "traefik.port=80"
+      - "traefik.http.routers.fireflyiii.entrypoints=websecure"
+      - "traefik.http.routers.fireflyiii.tls.certresolver=mydnschallenge"
+
+networks:
+  web:
+    external: true
