@@ -6,4 +6,4 @@ COPY requirements.txt ./
 COPY config.py /
 RUN pip install --no-cache-dir -r requirements.txt
 
-CMD [ "promnesia", "serve", "--db", "/config.py" ]
+CMD ["promnesia", "serve", "--db", "/data/promnesia.sqite" ]

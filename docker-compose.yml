@@ -1,6 +1,14 @@
 version: '3.3'
 
 services:
+  promnesia-index:
+    build:
+      context: ./promnesia/
+      dockerfile: Dockerfile
+    volumes:
+      - ./data:/data
+    entrypoint: ["promnesia", "index", "--config", "/config.py" ]
+
   promnesia:
     container_name: promnesia
     build:
@@ -8,8 +16,11 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ./data:/data
+    depends_on:
+      - promnesia-index
     ports:
       - "13131:13131"
+    entrypoint: ["promnesia", "serve", "--db", "/data/promnesia.sqite" ]
     networks:
       - web
     labels:

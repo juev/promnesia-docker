@@ -8,8 +8,7 @@ OUTPUT_DIR = Path('/data')
 
 from promnesia import Source
 from promnesia.sources import auto
-from promnesia.sources import telegram
-from promnesia.sources import takeout, instapaper, pocket, fbmessenger, twitter, roamresearch, hypothesis
+from promnesia.sources import instapaper, pocket, twitter, roamresearch, hypothesis
 
 SOURCES = [
     # handle my knowledge base: extract links from Org-mode and Markdown files
